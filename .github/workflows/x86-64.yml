@@ -369,7 +369,6 @@ jobs:
           df -h
           echo '-----'
           echo 'btrfs filesystem usage'
-          # sudo btrfs filesystem usage $GITHUB_WORKSPACE
           echo '-----'
 
       - name: Upload Bin Archive
