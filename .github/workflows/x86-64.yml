@@ -322,7 +322,9 @@ jobs:
       - name: Generate Firmware
         id: generate
         run: |
-          sudo apt install qemu-utils
+          sudo apt-get update
+          sudo apt-get dist-upgrade -y
+          sudo apt-get install qemu-utils
           if grep -q $DEVICE_TARGET/$DEVICE_SUBTARGET $GITHUB_WORKSPACE/data/support-targets.txt; then
             mkdir -p $OPENWRT_ROOT_PATH/files/etc/opkg
             cd $OPENWRT_ROOT_PATH/files/etc/opkg
