@@ -339,17 +339,10 @@ jobs:
             make
             ls /
             sudo mv usign /bin
-            echo "mv passed"
-            
             mkdir -p $OPENWRT_ROOT_PATH/files/etc/opkg/keys
-            echo "mkdir passed"
-            
             cd $OPENWRT_ROOT_PATH/files/etc/opkg/keys
             wget -q https://raw.githubusercontent.com/f8ing/OpenWrt-Rpi/main/key-build.pub
-            echo "wget passed"
-            
             mv key-build.pub $(usign -F -p key-build.pub)
-            echo "mv passed"
           fi
           cd $OPENWRT_ROOT_PATH
           mkdir -p files/etc/uci-defaults/
