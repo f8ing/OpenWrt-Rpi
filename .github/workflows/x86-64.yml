@@ -337,7 +337,6 @@ jobs:
             cd usign
             cmake .
             make
-            ls /
             sudo mv usign /bin
             mkdir -p $OPENWRT_ROOT_PATH/files/etc/opkg/keys
             cd $OPENWRT_ROOT_PATH/files/etc/opkg/keys
