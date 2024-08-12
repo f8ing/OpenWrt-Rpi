@@ -101,7 +101,7 @@ jobs:
           export DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
           echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
           # echo "::set-output name=DEVICE_SUBTARGET::$(echo $DEVICE_SUBTARGET)"
-          echo "DEVICE_SUBTARGET=$(echo $DEVICE_SUBTARGET))" >> $GITHUB_OUTPUT
+          echo "DEVICE_SUBTARGET=$(echo $DEVICE_SUBTARGET)" >> $GITHUB_OUTPUT
           export DEVICE_PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
           echo "DEVICE_PLATFORM=$DEVICE_PLATFORM" >> $GITHUB_ENV
           # echo "::set-output name=DEVICE_PLATFORM::$(echo $DEVICE_PLATFORM)"
