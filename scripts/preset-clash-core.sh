@@ -17,9 +17,9 @@ mkdir -p files/etc/openclash/core
 # GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 # GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
-CLASH_DEV_URL="https://github.com/vernesong/OpenClash/raw/core/master/dev/clash-linux-${1}-v3.tar.gz"
+CLASH_DEV_URL="https://github.com/vernesong/OpenClash/raw/core/master/dev/clash-linux-${1}.tar.gz"
 CLASH_TUN_URL="https://github.com/vernesong/OpenClash/raw/core/master/premium/clash-linux-${1}-2023.08.17-13-gdcc8d87.gz"
-CLASH_META_URL="https://github.com/vernesong/OpenClash/raw/core/master/meta/clash-linux-${1}-v3.tar.gz"
+CLASH_META_URL="https://github.com/vernesong/OpenClash/raw/core/master/meta/clash-linux-${1}.tar.gz"
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
