@@ -141,14 +141,14 @@ jobs:
         run: |
           cd $OPENWRT_ROOT_PATH
           echo -e "$(nproc) thread compile"
-          make tools/compile -j$(nproc) || make tools/compile  V=sc
+          make tools/compile -j$(nproc) V=s || make tools/compile  V=sc
 
       - name: Compile Toolchain
         if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
         run: |
           cd $OPENWRT_ROOT_PATH
           echo -e "$(nproc) thread compile"
-          make toolchain/compile -j$(nproc) || make toolchain/compile  V=sc
+          make toolchain/compile -j$(nproc) V=s || make toolchain/compile  V=sc
           rm -rf .config* dl bin
 
       - name: Generate Toolchain Image
@@ -326,9 +326,9 @@ jobs:
           echo -e "$(nproc) thread compile"
           make buildinfo
           make diffconfig buildversion feedsversion
-          make target/compile -j$(nproc) IGNORE_ERRORS="m n" BUILD_LOG=1 || \
+          make target/compile -j$(nproc) V=s IGNORE_ERRORS="m n" BUILD_LOG=1 || \
           yes n | make target/compile  V=sc IGNORE_ERRORS=1
-          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile  V=sc IGNORE_ERRORS=1
+          make package/compile -j$(nproc) V=s IGNORE_ERRORS=1 || make package/compile  V=sc IGNORE_ERRORS=1
           make package/index
 
       - name: Generate Firmware
@@ -362,8 +362,8 @@ jobs:
           cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
           mkdir -p files/www/snapshots
           cp -r bin/targets files/www/snapshots
-          make package/install -j$(nproc) || make package/install  V=sc
-          make target/install -j$(nproc) || make target/install  V=sc
+          make package/install -j$(nproc) V=s || make package/install  V=sc
+          make target/install -j$(nproc) V=s || make target/install  V=sc
           make json_overview_image_info
           make checksum
 
