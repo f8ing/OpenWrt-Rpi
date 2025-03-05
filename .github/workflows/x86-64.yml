@@ -30,7 +30,7 @@ env:
 
 jobs:
   Toolchain:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     outputs:
       OPENWRT_ROOT_PATH: ${{ steps.clone.outputs.OPENWRT_ROOT_PATH }}
@@ -50,7 +50,8 @@ jobs:
           sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
           sudo -E apt-get -qq update
           sudo -E apt-get dist-upgrade -y
-          sudo -E apt-get -qq install squashfs-tools $(curl -fsSL https://raw.githubusercontent.com/breakings/OpenWrt/main/depends-ubuntu-2004)
+          # sudo -E apt-get -qq install squashfs-tools $(curl -fsSL https://raw.githubusercontent.com/breakings/OpenWrt/main/depends-ubuntu-2004)
+          sudo -E apt-get -qq install squashfs-tools build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget genisoimage
           sudo -E apt-get -qq autoremove --purge
           sudo -E apt-get -qq clean
           sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -193,7 +194,7 @@ jobs:
 
   Build:
     needs: [Toolchain]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Restore Variables
@@ -395,7 +396,7 @@ jobs:
 
   Upload:
     needs: [Build, Toolchain]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -465,7 +466,7 @@ jobs:
           DEST_TARGETS: "b2://${{ secrets.B2_BUCKETNAME }}/releases/targets/${{ env.DEVICE_TARGET }}/${{ env.DEVICE_SUBTARGET }}/"
         if: env.B2_APPLICATION_KEY != null && env.B2_APPLICATION_KEY_ID != null
         run: |
-          sudo wget -q -O /bin/b2 https://github.com/Backblaze/B2_Command_Line_Tool/releases/22.04/download/b2-linux
+          sudo wget -q -O /bin/b2 https://github.com/Backblaze/B2_Command_Line_Tool/releases/latest/download/b2-linux
           sudo chmod +x /bin/b2
           b2 authorize-account $B2_APPLICATION_KEY_ID $B2_APPLICATION_KEY
           b2 sync --noProgress --threads 32 --keepDays 7 --replaceNewer $SOURCE_TARGETS $DEST_TARGETS
