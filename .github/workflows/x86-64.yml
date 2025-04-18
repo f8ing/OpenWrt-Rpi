@@ -134,6 +134,10 @@ jobs:
           cd $OPENWRT_ROOT_PATH
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+
+          # 测试工具链添加python3
+          ./scripts/feeds install python3
+          
           make defconfig
 
       - name: Compile Tools
